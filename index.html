@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121212" />
+    <title>ey! — Menú</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════
+       NAV FLOTANTE
+  ══════════════════════════════════════ -->
+    <nav
+      class="quick-nav"
+      id="quickNav"
+      role="navigation"
+      aria-label="Navegación rápida"
+    >
+      <div class="quick-nav__track">
+        <a href="#tablas" class="qn-btn">Tablas</a>
+        <a href="#bebidas" class="qn-btn">Bebidas</a>
+        <a href="#bodega" class="qn-btn">Bodega</a>
+        <a href="#whiskys" class="qn-btn">Whiskys</a>
+        <a href="#gaseosas" class="qn-btn">Gaseosas</a>
+        <a href="#combos" class="qn-btn">Combos</a>
+      </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+       HERO / HEADER
+  ══════════════════════════════════════ -->
+    <header class="hero" id="top">
+      <div class="hero__inner">
+        <div class="hero__logo-wrap">
+          <img src="logo-ey.png" alt="Logo Ey!" class="hero__logo" />
+        </div>
+        <p class="hero__slogan">Cinco destinos.<br />Cinco maridajes.</p>
+        <div class="hero__alert" role="alert">
+          <span class="hero__alert-icon">★</span>
+          Cada tabla rinde para dos personas.
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ══════════════════════════════════════
+         SECCIÓN 1: TABLAS DE TAPEO
+    ══════════════════════════════════════ -->
+      <section class="section" id="tablas">
+        <div class="section__header">
+          <span class="section__eyebrow">Para compartir</span>
+          <h2 class="section__title">Tablas de Tapeo</h2>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Argenta -->
+          <article class="card">
+            <div class="card__head">
+              <h3 class="card__name">Tabla Argenta</h3>
+              <span class="card__price">$22.000</span>
+            </div>
+            <p class="card__desc">
+              Mini choripanes, provoleta grillada, empanaditas criollas, salame
+              y quesos regionales, matambrito arrollado, aceitunas marinadas,
+              pan casero tostado, chimichurri y salsa criolla.
+            </p>
+            <div class="card__pairing">
+              <span class="card__pairing-label">Marida con</span>
+              Fernet con Coca &middot; Malbec &middot; Vermut Rosso
+            </div>
+          </article>
+
+          <!-- Vasca -->
+          <article class="card">
+            <div class="card__head">
+              <h3 class="card__name">Tabla Vasca</h3>
+              <span class="card__price">$22.000</span>
+            </div>
+            <p class="card__desc">
+              Tortilla española en cubos, pintxos variados, jamón crudo, quesos
+              estacionados nacionales, croquetas de jamón, aceitunas rellenas,
+              pan tumaca, alioli casero, pimientos asados.
+            </p>
+            <div class="card__pairing">
+              <span class="card__pairing-label">Marida con</span>
+              Cabernet &middot; Gin Tonic clásico &middot; Cerveza rubia
+            </div>
+          </article>
+
+          <!-- Mexicana -->
+          <article class="card">
+            <div class="card__head">
+              <h3 class="card__name">Tabla Mexicana</h3>
+              <span class="card__price">$22.000</span>
+            </div>
+            <p class="card__desc">
+              Mini tacos de carne o pollo, nachos con cheddar, guacamole casero,
+              alitas BBQ, salsa cheddar, crema agria.
+            </p>
+            <div class="card__pairing">
+              <span class="card__pairing-label">Marida con</span>
+              Margarita clásica &middot; Cerveza rubia &middot; Tequila sunrise
+            </div>
+          </article>
+
+          <!-- Americana -->
+          <article class="card">
+            <div class="card__head">
+              <h3 class="card__name">Tabla Americana</h3>
+              <span class="card__price">$22.000</span>
+            </div>
+            <p class="card__desc">
+              Mini hamburguesas, bastones de mozzarella, papas con cheddar y
+              panceta, alitas BBQ, nuggets de pollo, salsas BBQ, cheddar y honey
+              mustard.
+            </p>
+            <div class="card__pairing">
+              <span class="card__pairing-label">Marida con</span>
+              Cerveza IPA &middot; Cuba Libre &middot; Whisky con Coca
+            </div>
+          </article>
+
+          <!-- Mediterránea -->
+          <article class="card card--featured">
+            <div class="card__featured-badge">Chef's pick</div>
+            <div class="card__head">
+              <h3 class="card__name">Tabla Mediterránea</h3>
+              <span class="card__price">$24.000</span>
+            </div>
+            <p class="card__desc">
+              Langostinos fritos en panko, hummus clásico, bruschettas capresse,
+              quesos suaves, aceitunas negras y verdes, tomates cherry, pan pita
+              tostado.
+            </p>
+            <div class="card__pairing">
+              <span class="card__pairing-label">Marida con</span>
+              Aperol Spritz &middot; Gin Tonic con limón &middot; Vino blanco
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+         SECCIÓN 2: BEBIDAS Y COCTELERÍA
+    ══════════════════════════════════════ -->
+      <section class="section" id="bebidas">
+        <div class="section__header">
+          <span class="section__eyebrow">Coctelería</span>
+          <h2 class="section__title">Bebidas</h2>
+        </div>
+
+        <div class="accordion-group">
+          <!-- Aperitivos -->
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-aperitivos"
+            >
+              <span class="accordion__title">Aperitivos</span>
+              <span class="accordion__sub">Incluyen tapa</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div
+              class="accordion__body"
+              id="acc-aperitivos"
+              role="region"
+              hidden
+            >
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Tinto de Verano</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Campari Orange</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Campari Tonic</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Negroni</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Aperol Spritz</span
+                  ><span class="item__price">$9.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Aperol Sprite</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Cynar Julep</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Carpano Tonic</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Americano Italiano</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Gancia</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Gancia Batido</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Fernet Cola</span
+                  ><span class="item__price">$9.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Ferroviario</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tragos Clásicos -->
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-clasicos"
+            >
+              <span class="accordion__title">Tragos Clásicos</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-clasicos" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Laguna Azul</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Caipirinha</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Caipiroska</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Cuba Libre</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Mojito</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Tom Collins</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Sex on the Beach</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Gin Tonic</span
+                  ><span class="item__price">$9.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Malibú</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Vodka con Jugo</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Vodka con Sprite</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Vodka con Speed</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Whisky con Speed</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Jagermeister con Red Bull</span
+                  ><span class="item__price">$12.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Jager Julep</span
+                  ><span class="item__price">$9.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tragos de Postre -->
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-postre"
+            >
+              <span class="accordion__title">Tragos de Postre</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-postre" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Affogato Night</span
+                  ><span class="item__price">$12.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Cream Baileys</span
+                  ><span class="item__price">$12.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Brownie Cream</span
+                  ><span class="item__price">$13.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mocktails -->
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-mock"
+            >
+              <span class="accordion__title">Mocktails</span>
+              <span class="accordion__sub">Sin alcohol · Incluyen tapa</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-mock" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Pink Lemon</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Mojito Cero</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Blue Fresh</span
+                  ><span class="item__price">$7.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Cervezas -->
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-cervezas"
+            >
+              <span class="accordion__title">Cervezas</span>
+              <span class="accordion__sub">Incluyen tapa</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-cervezas" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Corona 330ml</span
+                  ><span class="item__price">$6.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Stella 330ml</span
+                  ><span class="item__price">$6.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Corona Cero 330ml</span
+                  ><span class="item__price">$6.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Andes IPA 473ml</span
+                  ><span class="item__price">$6.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Andes Roja 473ml</span
+                  ><span class="item__price">$6.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /.accordion-group -->
+      </section>
+
+      <!-- ══════════════════════════════════════
+         SECCIÓN 3: BODEGA
+    ══════════════════════════════════════ -->
+      <section class="section" id="bodega">
+        <div class="section__header">
+          <span class="section__eyebrow">Vinos</span>
+          <h2 class="section__title">Bodega</h2>
+        </div>
+
+        <div class="accordion-group">
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-copa"
+            >
+              <span class="accordion__title">Por Copa</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-copa" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Copa Alma Mora</span
+                  ><span class="item__price">$4.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Copa Santa Julia Chenin Dulce</span
+                  ><span class="item__price">$4.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Copa Trumpeter Malbec</span
+                  ><span class="item__price">$5.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name"
+                    >Copa Trumpeter Cabernet Sauvignon</span
+                  ><span class="item__price">$5.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <button
+              class="accordion__trigger"
+              aria-expanded="false"
+              aria-controls="acc-botella"
+            >
+              <span class="accordion__title">Por Botella</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-botella" role="region" hidden>
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Alma Mora</span
+                  ><span class="item__price">$13.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Santa Julia Chenin Dulce</span
+                  ><span class="item__price">$16.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Trumpeter Malbec</span
+                  ><span class="item__price">$22.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Trumpeter Cabernet Sauvignon</span
+                  ><span class="item__price">$22.000</span>
+                </li>
+                <li class="item item--premium">
+                  <span class="item__name">Rutini</span
+                  ><span class="item__price">$49.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+         SECCIÓN 4: WHISKYS
+    ══════════════════════════════════════ -->
+      <section class="section" id="whiskys">
+        <div class="section__header">
+          <span class="section__eyebrow">Por medida</span>
+          <h2 class="section__title">Whiskys</h2>
+        </div>
+
+        <div class="accordion-group">
+          <div class="accordion accordion--open">
+            <button
+              class="accordion__trigger"
+              aria-expanded="true"
+              aria-controls="acc-whisky"
+            >
+              <span class="accordion__title">Selección</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-whisky" role="region">
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">J&B</span
+                  ><span class="item__price">$8.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Jack Daniels</span
+                  ><span class="item__price">$11.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Johnnie Walker Red</span
+                  ><span class="item__price">$9.000</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Johnnie Walker Black</span
+                  ><span class="item__price">$14.000</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+         SECCIÓN 5: GASEOSAS / JUGOS / AGUAS
+    ══════════════════════════════════════ -->
+      <section class="section" id="gaseosas">
+        <div class="section__header">
+          <span class="section__eyebrow">Individuales</span>
+          <h2 class="section__title">Gaseosas &amp; Aguas</h2>
+        </div>
+
+        <div class="accordion-group">
+          <div class="accordion accordion--open">
+            <button
+              class="accordion__trigger"
+              aria-expanded="true"
+              aria-controls="acc-gas"
+            >
+              <span class="accordion__title">Bebidas sin alcohol</span>
+              <span class="accordion__sub">&nbsp;</span>
+              <span class="accordion__icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion__body" id="acc-gas" role="region">
+              <ul class="item-list">
+                <li class="item">
+                  <span class="item__name">Coca Cola 354ml</span
+                  ><span class="item__price">$3.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Sprite 354ml</span
+                  ><span class="item__price">$3.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Tónica</span
+                  ><span class="item__price">$3.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Agua saborizada pomelo</span
+                  ><span class="item__price">$2.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Agua saborizada naranja</span
+                  ><span class="item__price">$2.500</span>
+                </li>
+                <li class="item">
+                  <span class="item__name">Agua</span
+                  ><span class="item__price">$1.500</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════
+         SECCIÓN 6: COMBOS
+    ══════════════════════════════════════ -->
+      <section class="section section--combos" id="combos">
+        <div class="section__header">
+          <span class="section__eyebrow">Para la mesa</span>
+          <h2 class="section__title">Combos para Compartir</h2>
+        </div>
+
+        <div class="combo-grid">
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Fernet + Coca Cola 354ml</h3>
+            <span class="combo-card__price">$60.000</span>
+          </article>
+
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Gancia + Sprite 354ml</h3>
+            <span class="combo-card__price">$50.000</span>
+          </article>
+
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Gin Heredero + Tónica 354ml</h3>
+            <span class="combo-card__price">$60.000</span>
+          </article>
+
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Corona 330ml</h3>
+            <span class="combo-card__price">$25.000</span>
+          </article>
+
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Stella 330ml</h3>
+            <span class="combo-card__price">$25.000</span>
+          </article>
+
+          <article class="combo-card">
+            <span class="combo-card__qty">×5</span>
+            <h3 class="combo-card__name">Jagermeister + Red Bull</h3>
+            <span class="combo-card__price">$95.000</span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+    <footer class="footer">
+      <div class="footer__tapa-note">
+        <span class="footer__tapa-icon">★</span>
+        Tapa Individual: <strong>$3.200</strong>
+      </div>
+
+      <div class="footer__content">
+        <div class="footer__brand">
+          <span class="footer__brand-name">Ey! Bar y Copas </span>
+          <p class="footer__tagline">Cinco destinos. Cinco maridajes.</p>
+        </div>
+
+        <div class="footer__info">
+          <p class="footer__address">📍 Av. Italia y Saavedra, Rio Colorado</p>
+          <p class="footer__hours">🕗 Viernes y Sábado · 20:00 – 06:30hs</p>
+        </div>
+
+        <div class="footer__social">
+          <a href="#" class="footer__social-link" aria-label="Instagram">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+            @eybarycopas
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        © <span id="currentYear"></span> Hecho por Belén Burgos. Todos los
+        derechos reservados.
+      </div>
+    </footer>
+
+    <!-- Botón volver arriba -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      aria-label="Volver arriba"
+      title="Volver arriba"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
