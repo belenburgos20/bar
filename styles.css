@@ -200,9 +200,10 @@ ul {
 }
 
 .hero__logo {
-  width: 92px;
-  height: 92px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .hero__slogan {
@@ -249,6 +250,13 @@ ul {
   margin-bottom: 24px;
 }
 
+.section__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .section__eyebrow {
   display: block;
   font-size: 10.5px;
@@ -265,6 +273,10 @@ ul {
   font-weight: 400;
   line-height: 1.1;
   color: var(--text);
+}
+
+.section__alert {
+  flex: 0 1 auto;
 }
 
 /* Divider line after title */
@@ -689,7 +701,8 @@ ul {
 }
 
 .footer__address,
-.footer__hours {
+.footer__hours,
+.footer__contact {
   font-size: 12.5px;
   color: var(--text-muted);
   line-height: 1.5;
