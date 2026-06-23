@@ -629,6 +629,92 @@ ul {
 }
 
 /* ══════════════════════════════════════════════
+   PROMOS DE LA NOCHE
+══════════════════════════════════════════════ */
+.section--promos {
+  padding-bottom: 48px;
+}
+
+.promos__intro {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.promos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.promo-card {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(26, 26, 26, 0.96));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 16px;
+}
+
+.promo-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.promo-card__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.promo-card__price {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold-light);
+  white-space: nowrap;
+}
+
+.promo-card__meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.promo-card__drinks-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+.promo-card__drinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.promo-card__drink {
+  font-size: 12px;
+  color: var(--text);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.promos-empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-card);
+  padding: 14px;
+  text-align: center;
+  color: var(--gold-light);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+/* ══════════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════════ */
 .footer {
@@ -809,6 +895,10 @@ ul {
 
   .combo-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .promos-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .qn-btn {

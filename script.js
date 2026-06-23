@@ -6,6 +6,21 @@
 (function () {
   'use strict';
 
+  const NIGHT_PROMOS = [
+    /*{
+      title: '2x1 en Tragos Clásicos',
+      price: 'Pagás 1 y tomás 2',
+      schedule: 'Sábados de 00:00 a 02:00',
+      drinks: ['Mojito', 'Caipirinha', 'Cuba Libre']
+    },
+    {
+      title: '2 tragos por $4.000',
+      price: '$4.000',
+      schedule: 'Promo válida esta noche',
+      drinks: ['Gin Tonic', 'Fernet Cola']
+    }*/
+  ];
+
   /* ─── DOM REFS ────────────────────────────── */
   const backToTopBtn = document.getElementById('backToTop');
   const qnBtns = document.querySelectorAll('.qn-btn');
@@ -137,6 +152,77 @@
   }
 
   /* ══════════════════════════════════════════
+     PROMOS DE LA NOCHE
+  ══════════════════════════════════════════ */
+  function initNightPromos() {
+    var promosContainer = document.getElementById('promosContainer');
+    var promosEmpty = document.getElementById('promosEmpty');
+
+    if (!promosContainer || !promosEmpty) return;
+
+    promosContainer.textContent = '';
+
+    if (!Array.isArray(NIGHT_PROMOS) || NIGHT_PROMOS.length === 0) {
+      promosEmpty.hidden = false;
+      return;
+    }
+
+    promosEmpty.hidden = true;
+
+    NIGHT_PROMOS.forEach(function (promo) {
+      var card = document.createElement('article');
+      card.className = 'promo-card';
+
+      var head = document.createElement('div');
+      head.className = 'promo-card__head';
+
+      var title = document.createElement('h3');
+      title.className = 'promo-card__title';
+      title.textContent = promo.title || 'Promo especial';
+
+      var price = document.createElement('span');
+      price.className = 'promo-card__price';
+      price.textContent = promo.price || '';
+
+      head.appendChild(title);
+      head.appendChild(price);
+      card.appendChild(head);
+
+      if (promo.schedule) {
+        var meta = document.createElement('p');
+        meta.className = 'promo-card__meta';
+        meta.textContent = promo.schedule;
+        card.appendChild(meta);
+      }
+
+      var drinksLabel = document.createElement('p');
+      drinksLabel.className = 'promo-card__drinks-label';
+      drinksLabel.textContent = 'Tragos incluidos';
+      card.appendChild(drinksLabel);
+
+      var drinksWrap = document.createElement('div');
+      drinksWrap.className = 'promo-card__drinks';
+
+      if (Array.isArray(promo.drinks) && promo.drinks.length) {
+        promo.drinks.forEach(function (drinkName) {
+          var pill = document.createElement('span');
+          pill.className = 'promo-card__drink';
+          pill.textContent = drinkName;
+          drinksWrap.appendChild(pill);
+        });
+      } else {
+        var noDrinks = document.createElement('span');
+        noDrinks.className = 'promo-card__drink';
+        noDrinks.textContent = 'Sin tragos definidos';
+        drinksWrap.appendChild(noDrinks);
+      }
+
+      card.appendChild(drinksWrap);
+      promosContainer.appendChild(card);
+    });
+  }
+
+  /* ══════════════════════════════════════════
      INIT
   ══════════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', function () {
@@ -144,6 +230,7 @@
     initBackToTop();
     initActiveNav();
     initNavScrollHint();
+    initNightPromos();
     initFooterLegal();
   });
 
