@@ -1,0 +1,110 @@
+/* Tablas de tapeo: tarjetas con descripción larga. */
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  /* auto-fit + minmax: una columna en celular, y va sumando columnas
+     sola a medida que hay lugar. Sin breakpoints ni anchos fijos. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  align-items: start;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+  padding: 1.25rem 1.125rem 1.125rem;
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+/* Filo dorado superior. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--border);
+    transform: translateY(-2px);
+  }
+}
+
+.featured {
+  background: var(--bg-card-alt);
+  border-color: var(--border);
+}
+
+.featuredBadge {
+  align-self: flex-start;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #121212;
+  background: var(--gold);
+  padding: 0.1875rem 0.625rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.625rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.4375rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.price {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--gold);
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 0.875rem;
+}
+
+.pairing {
+  margin-top: auto;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 0.75rem;
+}
+
+.pairingLabel {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.1875rem;
+}

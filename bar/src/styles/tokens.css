@@ -1,0 +1,61 @@
+/* ══════════════════════════════════════════════
+   ey! — Tokens de diseño
+   Portados del sitio original. Cambiar un color acá
+   lo cambia en todo el sitio (público y admin).
+   ══════════════════════════════════════════════ */
+
+:root {
+  /* ─── Superficies ─── */
+  --bg: #121212;
+  --bg-card: #1a1a1a;
+  --bg-card-alt: #1f1e1b;
+  --bg-combo: #181610;
+
+  /* ─── Dorado de la marca ─── */
+  --gold: #c9a84c;
+  --gold-light: #e2c97e;
+  --gold-dim: #8a6e2f;
+  --gold-glow: rgba(201, 168, 76, 0.18);
+
+  /* ─── Texto ─── */
+  --text: #f0ece3;
+  --text-muted: #9e9a91;
+  --text-dim: #5c574e;
+
+  /* ─── Bordes ─── */
+  --border: rgba(201, 168, 76, 0.15);
+  --border-soft: rgba(255, 255, 255, 0.06);
+
+  /* ─── Estados (usados sobre todo en el admin) ─── */
+  --danger: #d76b6b;
+  --danger-dim: rgba(215, 107, 107, 0.15);
+  --success: #6bbf8a;
+  --success-dim: rgba(107, 191, 138, 0.15);
+
+  /* ─── Formas ─── */
+  --radius-card: 14px;
+  --radius-btn: 40px;
+  --radius-input: 10px;
+
+  /* ─── Tipografía ─── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* ─── Medidas del layout ─────────────────────────────────────
+     Todo en unidades relativas o con clamp(): nada de anchos fijos
+     que rompan en pantallas raras. */
+  --nav-h: 52px;
+
+  /* Ancho de UNA columna de menú. Crece un poco con la pantalla
+     pero nunca tanto como para que una línea sea incómoda de leer. */
+  --col: clamp(18rem, 92vw, 40rem);
+
+  /* Ancho máximo del contenedor general. En pantallas grandes deja
+     que entren 2-3 columnas y corta antes de estirarse al infinito. */
+  --shell: min(96vw, 90rem);
+
+  /* Respiro lateral: chico en el celular, generoso en escritorio. */
+  --gutter: clamp(0.875rem, 3vw, 2rem);
+
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}

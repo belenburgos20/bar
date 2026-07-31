@@ -1,0 +1,42 @@
+.btn {
+  position: fixed;
+  /* Respeta la barra de gestos del iPhone. */
+  right: max(var(--gutter), env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 90;
+
+  /* Área táctil cómoda (mínimo recomendado de accesibilidad). */
+  width: 2.875rem;
+  height: 2.875rem;
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition:
+    opacity var(--transition),
+    visibility var(--transition),
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+}

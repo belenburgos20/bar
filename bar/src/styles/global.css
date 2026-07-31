@@ -1,0 +1,183 @@
+/* ══════════════════════════════════════════════
+   ey! — Reset, fondo y estilos base
+   ══════════════════════════════════════════════ */
+
+@import './tokens.css';
+
+/* ─── RESET ───────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg);
+  /* El scroll se frena antes del título al saltar con la nav flotante. */
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+body {
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  line-height: 1.6;
+  min-height: 100dvh;
+  /* Ancho: nunca desborda horizontalmente, en ningún tamaño. */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FONDO
+   ──────────────────────────────────────────────────────────────
+   Va en un pseudo-elemento FIJO, no en `body`.
+
+   Por qué: `body` mide todo el alto del documento (el menú entero,
+   miles de píxeles). Un `background: cover` ahí escala la imagen
+   para cubrir ESE alto, así que se agranda muchísimo y solo se ve
+   un pedacito. Anclado al viewport con position: fixed, `cover`
+   trabaja contra el tamaño de la pantalla y la foto se ve completa
+   y bien encuadrada en cualquier dispositivo.
+   ══════════════════════════════════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(18, 18, 18, 0.74), rgba(18, 18, 18, 0.88)),
+    url('../assets/fondo-800.webp');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Pantallas medianas y grandes: la versión de más resolución. */
+@media (min-width: 48rem) {
+  body::before {
+    background-image:
+      linear-gradient(rgba(18, 18, 18, 0.74), rgba(18, 18, 18, 0.88)),
+      url('../assets/fondo-1376.webp');
+  }
+}
+
+/* AVIF donde esté soportado (~35% más liviano que WebP). */
+@supports (background-image: image-set(url('../assets/fondo-800.avif') type('image/avif'))) {
+  body::before {
+    background-image:
+      linear-gradient(rgba(18, 18, 18, 0.74), rgba(18, 18, 18, 0.88)),
+      image-set(
+        url('../assets/fondo-800.avif') type('image/avif'),
+        url('../assets/fondo-800.webp') type('image/webp')
+      );
+  }
+
+  @media (min-width: 48rem) {
+    body::before {
+      background-image:
+        linear-gradient(rgba(18, 18, 18, 0.74), rgba(18, 18, 18, 0.88)),
+        image-set(
+          url('../assets/fondo-1376.avif') type('image/avif'),
+          url('../assets/fondo-1376.webp') type('image/webp')
+        );
+    }
+  }
+}
+
+/* El original mide 1376px de ancho. En monitores más grandes hay que
+   agrandarlo, así que un desenfoque muy leve disimula la pérdida de
+   nitidez y queda como bokeh intencional. El scale evita que el blur
+   deje los bordes transparentes. */
+@media (min-width: 100rem) {
+  body::before {
+    filter: blur(2px);
+    transform: scale(1.03);
+  }
+}
+
+/* ─── ELEMENTOS BASE ──────────────────────────── */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem; /* < 1rem hace que iOS haga zoom al enfocar */
+  color: inherit;
+}
+
+/* Foco visible para quien navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── SCROLLBAR ───────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border-radius: 3px;
+}
+
+/* ─── ACCESIBILIDAD ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Solo para lectores de pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
