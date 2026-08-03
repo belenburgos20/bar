@@ -1,3 +1,4 @@
+import PromoCard from '../components/PromoCard';
 import type { Promo, SectionWithContent } from '../types/menu';
 import { SectionHeader, SectionNote } from './SectionBlock';
 import styles from './PromosSection.module.css';
@@ -16,32 +17,11 @@ export default function PromosSection({ section, promos }: Props) {
         Consultá las promos vigentes y qué tragos entran en cada una.
       </p>
 
-      {promos.length === 0 ? (
-        <p className={styles.empty}>Esta noche no hay promos cargadas.</p>
-      ) : (
+      {/* Sin promos no se muestra ningún cartel: solo queda el texto de arriba. */}
+      {promos.length > 0 && (
         <div className={styles.grid} aria-live="polite">
           {promos.map((promo) => (
-            <article key={promo.id} className={styles.card}>
-              <div className={styles.head}>
-                <h3 className={styles.title}>{promo.title || 'Promo especial'}</h3>
-                {promo.price && <span className={styles.price}>{promo.price}</span>}
-              </div>
-
-              {promo.schedule && <p className={styles.meta}>{promo.schedule}</p>}
-
-              <p className={styles.drinksLabel}>Tragos incluidos</p>
-              <div className={styles.drinks}>
-                {promo.drinks.length > 0 ? (
-                  promo.drinks.map((drink) => (
-                    <span key={drink} className={styles.drink}>
-                      {drink}
-                    </span>
-                  ))
-                ) : (
-                  <span className={styles.drink}>Sin tragos definidos</span>
-                )}
-              </div>
-            </article>
+            <PromoCard key={promo.id} promo={promo} />
           ))}
         </div>
       )}

@@ -1,0 +1,174 @@
+/* ══════════════════════════════════════════════════════════════
+   Aviso de promos al abrir el menú
+   ──────────────────────────────────────────────────────────────
+   Se abre solo, ocupa la pantalla y se cierra con la ✕, con Escape,
+   tocando fuera o con el botón de abajo.
+   ══════════════════════════════════════════════════════════════ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  /* No tapar la barra de gestos ni la muesca. */
+  padding-top: max(var(--gutter), env(safe-area-inset-top));
+  padding-bottom: max(var(--gutter), env(safe-area-inset-bottom));
+
+  background: rgba(8, 8, 8, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: fade 0.24s ease;
+}
+
+.dialog {
+  position: relative;
+  width: min(100%, 48rem);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: clamp(1.5rem, 5vw, 2.25rem) clamp(1.125rem, 4vw, 2rem);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--gold-dim);
+  background: linear-gradient(165deg, #1f1e1b, #141414 65%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+
+  animation: rise 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.close {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+@media (hover: hover) {
+  .close:hover {
+    color: var(--gold-light);
+    border-color: var(--border);
+  }
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text);
+  /* Espacio para la ✕ en pantallas angostas. */
+  padding-right: 2rem;
+}
+
+.rule {
+  width: 3rem;
+  height: 1px;
+  margin: 0.875rem 0 1rem;
+  background: var(--gold-dim);
+}
+
+.intro {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+/* Cuerpo desplazable cuando hay muchas promos. */
+.body {
+  margin-top: 1.25rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grid {
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+@media (max-width: 44rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--gold-light);
+}
+
+.action {
+  margin-top: 1.5rem;
+  align-self: center;
+  padding: 0.6875rem 1.75rem;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--gold-dim);
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--gold-light);
+  font-family: inherit;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition);
+}
+
+@media (hover: hover) {
+  .action:hover {
+    background: rgba(201, 168, 76, 0.16);
+    border-color: var(--gold);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .dialog {
+    animation: none;
+  }
+}

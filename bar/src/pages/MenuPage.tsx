@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import BackToTop from '../components/BackToTop';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
+import PromosModal from '../components/PromosModal';
 import QuickNav from '../components/QuickNav';
 import { useMenu } from '../hooks/useMenu';
 import { withDefaults } from '../lib/defaults';
@@ -11,6 +12,7 @@ import styles from './MenuPage.module.css';
 export default function MenuPage() {
   const { data, isPending, isError, isStaleCache } = useMenu();
   const settings = withDefaults(data?.settings);
+  const [avisoCerrado, setAvisoCerrado] = useState(false);
 
   useEffect(() => {
     document.title = `${settings.brand_name} — Menú`;
@@ -18,8 +20,21 @@ export default function MenuPage() {
 
   const sections = data?.sections ?? [];
 
+  // El aviso de promos solo aparece si la sección está publicada en el menú.
+  const promosSection = sections.find((section) => section.layout === 'promos');
+  const promos = data?.promos ?? [];
+  const mostrarAviso = !avisoCerrado && !isPending && promosSection !== undefined;
+
   return (
     <>
+      {mostrarAviso && promosSection && (
+        <PromosModal
+          section={promosSection}
+          promos={promos}
+          onClose={() => setAvisoCerrado(true)}
+        />
+      )}
+
       <QuickNav sections={sections} />
       <Hero brandName={settings.brand_name ?? 'ey!'} slogan={settings.slogan ?? ''} />
 
@@ -48,7 +63,7 @@ export default function MenuPage() {
               <SectionBlock
                 key={section.id}
                 section={section}
-                promos={data?.promos ?? []}
+                promos={promos}
                 className={WIDE_LAYOUTS.has(section.layout) ? styles.wide : ''}
               />
             ))}
