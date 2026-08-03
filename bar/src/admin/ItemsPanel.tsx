@@ -12,6 +12,7 @@ import {
 } from '../hooks/useAdminData';
 import type { Item, ItemInput } from '../types/menu';
 import { formatPrice, parsePrice } from '../utils/format';
+import { filterByName } from '../utils/search';
 import styles from './ui.module.css';
 
 /** Estado del formulario. Todo texto: se convierte al guardar. */
@@ -63,6 +64,7 @@ export default function ItemsPanel() {
   const reorder = useReorder('items');
 
   const [sectionId, setSectionId] = useState<string>('');
+  const [query, setQuery] = useState('');
   const [editing, setEditing] = useState<Item | null>(null);
   const [creating, setCreating] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY);
@@ -84,6 +86,12 @@ export default function ItemsPanel() {
         .sort((a, b) => a.sort_order - b.sort_order),
     [items.data, activeSectionId],
   );
+
+  /* Resultados de la búsqueda, ordenados por relevancia.
+     Con el buscador vacío devuelve la lista completa en el orden del menú. */
+  const visibleItems = useMemo(() => filterByName(sectionItems, query), [sectionItems, query]);
+
+  const searching = query.trim().length > 0;
 
   const isList = section?.layout === 'list';
   const isCards = section?.layout === 'cards';
@@ -159,6 +167,55 @@ export default function ItemsPanel() {
     return <p className={styles.error}>{(loadError as Error).message}</p>;
   }
 
+  /** Contenido de una fila de producto. Lo usan la lista normal y la filtrada. */
+  function renderRow(item: Item) {
+    return (
+      <>
+        <div className={`${styles.rowMain} ${item.visible ? '' : styles.hidden}`}>
+          <span className={styles.rowTitle}>{item.name}</span>
+          <span className={styles.rowMeta}>
+            {formatPrice(item.price) || 'Sin precio'}
+            {item.qty != null && ` · ×${item.qty}`}
+            {isList &&
+              item.group_id &&
+              ` · ${sectionGroups.find((g) => g.id === item.group_id)?.title ?? 'Sin grupo'}`}
+            {item.premium && ' · Destacado'}
+            {item.featured && ' · Recomendado'}
+            {!item.visible && ' · Oculto'}
+          </span>
+        </div>
+
+        <div className={styles.rowActions}>
+          <button
+            type="button"
+            className={styles.iconBtn}
+            onClick={() => toggleVisible(item)}
+            aria-label={item.visible ? `Ocultar ${item.name}` : `Mostrar ${item.name}`}
+            title={item.visible ? 'Ocultar del menú' : 'Mostrar en el menú'}
+          >
+            {item.visible ? <EyeIcon /> : <EyeOffIcon />}
+          </button>
+          <button
+            type="button"
+            className={styles.iconBtn}
+            onClick={() => openEdit(item)}
+            aria-label={`Editar ${item.name}`}
+          >
+            <EditIcon />
+          </button>
+          <button
+            type="button"
+            className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+            onClick={() => handleDelete(item)}
+            aria-label={`Borrar ${item.name}`}
+          >
+            <TrashIcon />
+          </button>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div style={{ display: 'grid', gap: '1rem' }}>
       <div className={styles.field}>
@@ -169,7 +226,11 @@ export default function ItemsPanel() {
           id="section-picker"
           className={styles.select}
           value={activeSectionId}
-          onChange={(e) => setSectionId(e.target.value)}
+          onChange={(e) => {
+            setSectionId(e.target.value);
+            // Al cambiar de sección la búsqueda anterior ya no viene al caso.
+            setQuery('');
+          }}
         >
           {sections.data?.map((s) => (
             <option key={s.id} value={s.id}>
@@ -179,6 +240,47 @@ export default function ItemsPanel() {
           ))}
         </select>
       </div>
+
+      {sectionItems.length > 0 && (
+        <div className={styles.field}>
+          <label className={styles.label} htmlFor="item-search">
+            Buscar producto
+          </label>
+          <div className={styles.searchWrap}>
+            <span className={styles.searchIcon} aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+            <input
+              id="item-search"
+              className={styles.searchInput}
+              type="search"
+              placeholder="Nombre del producto…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              autoComplete="off"
+            />
+            {searching && (
+              <button
+                type="button"
+                className={styles.searchClear}
+                onClick={() => setQuery('')}
+                aria-label="Borrar búsqueda"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            )}
+          </div>
+          <span className={styles.hint}>
+            No hace falta que sea exacto: ignora mayúsculas, acentos y errores de tipeo.
+          </span>
+        </div>
+      )}
 
       {section?.layout === 'promos' && (
         <p className={styles.info}>
@@ -192,6 +294,37 @@ export default function ItemsPanel() {
 
       {sectionItems.length === 0 ? (
         <p className={styles.empty}>Esta sección todavía no tiene productos.</p>
+      ) : searching ? (
+        /* Buscando: lista filtrada por relevancia, SIN arrastre.
+           El orden que se ve acá no es el del menú, así que dejar arrastrar
+           guardaría un orden equivocado en la base. */
+        <>
+          <div className={styles.searchNote}>
+            <span className={styles.searchCount}>
+              {visibleItems.length === 0
+                ? 'Sin resultados'
+                : `${visibleItems.length} de ${sectionItems.length}`}
+            </span>
+            <span>Borrá la búsqueda para poder reordenar.</span>
+          </div>
+
+          {visibleItems.length === 0 ? (
+            <p className={styles.empty}>
+              Ningún producto de esta sección coincide con «{query.trim()}».
+            </p>
+          ) : (
+            <div style={{ display: 'grid', gap: '0.5rem' }}>
+              {visibleItems.map((item) => (
+                <div key={item.id} className={styles.rowItem}>
+                  {/* Hueco del ancho de la manija, para que las filas queden
+                      alineadas con las de la lista normal. */}
+                  <span className={styles.dragPlaceholder} aria-hidden="true" />
+                  {renderRow(item)}
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       ) : (
         <>
           <p className={styles.hint}>
@@ -199,51 +332,7 @@ export default function ItemsPanel() {
           </p>
 
           <SortableList items={sectionItems} onReorder={(ids) => reorder.mutate(ids)}>
-            {(item) => (
-              <>
-                <div className={`${styles.rowMain} ${item.visible ? '' : styles.hidden}`}>
-                  <span className={styles.rowTitle}>{item.name}</span>
-                  <span className={styles.rowMeta}>
-                    {formatPrice(item.price) || 'Sin precio'}
-                    {item.qty != null && ` · ×${item.qty}`}
-                    {isList &&
-                      item.group_id &&
-                      ` · ${sectionGroups.find((g) => g.id === item.group_id)?.title ?? 'Sin grupo'}`}
-                    {item.premium && ' · Destacado'}
-                    {item.featured && ' · Recomendado'}
-                    {!item.visible && ' · Oculto'}
-                  </span>
-                </div>
-
-                <div className={styles.rowActions}>
-                  <button
-                    type="button"
-                    className={styles.iconBtn}
-                    onClick={() => toggleVisible(item)}
-                    aria-label={item.visible ? `Ocultar ${item.name}` : `Mostrar ${item.name}`}
-                    title={item.visible ? 'Ocultar del menú' : 'Mostrar en el menú'}
-                  >
-                    {item.visible ? <EyeIcon /> : <EyeOffIcon />}
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.iconBtn}
-                    onClick={() => openEdit(item)}
-                    aria-label={`Editar ${item.name}`}
-                  >
-                    <EditIcon />
-                  </button>
-                  <button
-                    type="button"
-                    className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
-                    onClick={() => handleDelete(item)}
-                    aria-label={`Borrar ${item.name}`}
-                  >
-                    <TrashIcon />
-                  </button>
-                </div>
-              </>
-            )}
+            {(item) => renderRow(item)}
           </SortableList>
         </>
       )}

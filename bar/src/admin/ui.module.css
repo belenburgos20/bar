@@ -147,6 +147,85 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
 }
 
+/* ─── Buscador ─── */
+.searchWrap {
+  position: relative;
+  display: flex;
+}
+
+.searchInput {
+  width: 100%;
+  /* Deja lugar a la lupa de la izquierda y a la ✕ de la derecha. */
+  padding: 0.75rem 2.75rem 0.75rem 2.5rem;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--border);
+  background: rgba(18, 18, 18, 0.6);
+  color: var(--text);
+  transition: border-color var(--transition);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.searchInput::placeholder {
+  color: var(--text-dim);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  translate: 0 -50%;
+  color: var(--text-dim);
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.searchClear {
+  position: absolute;
+  right: 0.4375rem;
+  top: 50%;
+  translate: 0 -50%;
+  width: 2.125rem;
+  height: 2.125rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--text-muted);
+}
+
+@media (hover: hover) {
+  .searchClear:hover {
+    color: var(--gold);
+    background: rgba(201, 168, 76, 0.08);
+  }
+}
+
+/* Aviso de que el orden no se puede cambiar mientras se busca. */
+.searchNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.searchCount {
+  color: var(--gold-dim);
+}
+
+/* Espacio equivalente al de la manija de arrastre, para que las filas
+   filtradas queden alineadas con las de la lista normal. */
+.dragPlaceholder {
+  width: 1.75rem;
+  flex-shrink: 0;
+}
+
 /* ─── Checkbox ─── */
 .check {
   display: flex;
